@@ -44,12 +44,12 @@ public class Doy{
 	}
 	
 	
-	//Given a MMYYYY, finds the last day of the month
 	
-	//Given a DOW & DDMMYYYY, finds the DOW of the 1st day of the next month 
-	
-	//Given a DOW & DDMMYYYY, finds the DOW of the 1st day of the next year
-	
+	//Find the difference in days between 2 dates
+//	int getDifferenceInDays(DoyDate ){
+		//TODO error checking parameters
+//		return 0;
+//	}
 	
 	/**
 	 * Numbers of days in a given year 
@@ -159,6 +159,40 @@ public class Doy{
 		return ((dayOfWeek<=7) && (dayOfWeek>0));
 	}
 	
-
+	
 }
 
+//A simplified custom date class.
+class DoyDate{
+	private int year,month,day,dayOfWeek;
+	
+	public DoyDate(int year,int month,int day, int dayOfWeek){
+		setYear(year);
+		setMonth(month);
+		setDay(day);
+	}
+	
+	void setYear(int year){
+		this.year=year;
+	}
+	
+	void setMonth(int month){
+		this.month=month;
+	}
+	
+	void setDay(int day){
+		this.day=day;
+	}
+	
+	int getYear(){
+		return this.year;
+	}
+	
+	int getMonth(){
+		return this.month;
+	}
+	
+	int getDay(){
+		return this.day;
+	}
+}
