@@ -7,8 +7,15 @@ import java.io.*;
 import java.util.Date;
 
 public class Doy{
+	
+	private int [] thirthy = {4,6,9,11}; //September, April, June, November,
+	private int [] thirthyOne = {1,3,5,7,8,10,12}; //January, March, May, July, August, October, December
+	
+	public Doy() {
+		
+	}
 
-	static boolean isleapYear(int year){
+	boolean isleapYear(int year){
 		//error check - year
 		if(year<= 0){
 			throw new RuntimeException("the year entered is not valid");
@@ -30,28 +37,71 @@ public class Doy{
 		System.out.println("\t###################################");
 		System.out.println("\t\tDAY OF THE WEEK FINDER");
 		System.out.println("\t###################################\n");
-
-		/*
-		//error check args
-		if(args.length<reqArgsCount){
-			System.out.println("Please enter a valid year value");
-			System.exit(-1);
-		}
-		//initialize date components 
-		int year = Integer.parseInt(args[0]);
-		int month = Integer.parseInt(args[1]);
-		int day = Integer.parseInt(args[2]);
-		*/
+		Doy calculator = new Doy();
+		System.out.println(calculator.getDayOfWeek(2,30,1));
 		
-		System.out.println(getDayOfWeek(2,30,1));
-		/*while (entryInvalid){
-			System.out.println("Please enter a year:");
-			BufferedReader reader = new BufferedReader(new InputStreamreader(System.in()));
-			int value=Integer.parseInt(reader.readLine()); 
-			System.out.println(isleapYear(value));	
-		}
-		*/
 		
+	}
+	
+	
+	//Given a MMYYYY, finds the last day of the month
+	
+	//Given a DOW & DDMMYYYY, finds the DOW of the 1st day of the next month 
+	
+	//Given a DOW & DDMMYYYY, finds the DOW of the 1st day of the next year
+	
+	
+	/**
+	 * Numbers of days in a given year 
+	 * @param year
+	 * @return
+	 */
+	int getDaysInYear(int year) {
+		if(isleapYear(year)){
+			return 366; 
+		}
+		return 365;
+	}
+	
+	/**
+	 * TODO
+	 * @param day
+	 * @param month
+	 * @param year
+	 * @return
+	 */
+	int getDaysLeftInYear(int day,int month, int year){
+		int result=getDaysInMonth(month, year)-day;
+		for(int i=month+1;i<=12;i++){
+			result=+getDaysInMonth(i, year);
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param month
+	 * @param year
+	 * @return
+	 */
+	int getDaysInMonth(int month, int year){
+		if(month==2){ //month of February
+			if(isleapYear(year)) return 29;
+			return 28;
+		}
+		else{
+			for(int i=0;i<this.thirthy.length;i++){
+				if (thirthy[i]==month){
+					return 30;
+				}
+			}
+			for(int i=0;i<this.thirthyOne.length;i++){
+				if (thirthyOne[i]==month){
+					return 31;
+				}
+			}
+			return -1;
+		}
 	}
 	
 	/**
@@ -61,7 +111,7 @@ public class Doy{
 	 * @param givenDayOfWeek
 	 * @return
 	 */
-	static int getDayOfWeek(int day,int givenDay, int givenDayOfWeek) {
+	int getDayOfWeek(int day,int givenDay, int givenDayOfWeek) {
 		int dayOfWeek=0; 
 		if(verifyDayOfWeek(givenDayOfWeek)){
 			if(givenDay<=day){
@@ -88,7 +138,7 @@ public class Doy{
 	 * @param value
 	 * @return
 	 */
-	static int wrapToCorrectDay(int value) {
+	int wrapToCorrectDay(int value) {
 		int temp=Math.abs(value),dayOfWeek=0;
 		if(value<0){
 			if(temp>7){
@@ -105,9 +155,10 @@ public class Doy{
 		
 		
 	}
-	static boolean verifyDayOfWeek(int dayOfWeek){
+	boolean verifyDayOfWeek(int dayOfWeek){
 		return ((dayOfWeek<=7) && (dayOfWeek>0));
 	}
-
+	
 
 }
+
