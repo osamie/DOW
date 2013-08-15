@@ -46,10 +46,17 @@ public class Doy{
 	
 	
 	//Find the difference in days between 2 dates
-//	int getDifferenceInDays(DoyDate ){
+	int getDifferenceInDays(DoyDate date1, DoyDate date2){
 		//TODO error checking parameters
-//		return 0;
-//	}
+		
+		int yearDifference = date1.diffWithYear(date2);
+		
+		int daysDifference=getDaysLeftInYear(date1.getDay(), date1.getMonth(), date1.getYear());
+		for(int i=0;i<yearDifference;i++){
+			
+		}
+		return 0;
+	}
 	
 	/**
 	 * Numbers of days in a given year 
@@ -195,4 +202,12 @@ class DoyDate{
 	int getDay(){
 		return this.day;
 	}
+	
+	int diffWithYear(DoyDate date){
+		int otherYear=date.getYear();
+		
+		return (otherYear>this.year)?otherYear-year:year-otherYear;
+	}
+	
+	
 }
