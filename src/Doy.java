@@ -80,6 +80,7 @@ public class Doy{
 	int getDaysLeftInYear(int day,int month, int year){
 		int result=getDaysInMonth(month, year)-day;
 		for(int i=month+1;i<=12;i++){
+			//sum up the number of days of the remaining months in the year 
 			result=+getDaysInMonth(i, year);
 		}
 		return result;
@@ -177,6 +178,33 @@ class DoyDate{
 		setYear(year);
 		setMonth(month);
 		setDay(day);
+	}
+	
+	public boolean after(DoyDate otherDate){
+		if(year>otherDate.year){
+			return false;
+		}else if(otherDate.year>year){
+			return true;
+		}else{
+			//Same year, so compare months
+			if(month>otherDate.month){
+				return false;
+			}else if(otherDate.month>month){
+				return true;
+			}else{
+				//same month, so compare days
+				if(day>otherDate.day){
+					return false;
+				}else if(otherDate.day>day){
+					return true;
+				}else{
+					//Same year, month and day
+					return false;
+				}
+				
+			}
+		
+		}
 	}
 	
 	void setYear(int year){
