@@ -182,21 +182,21 @@ class DoyDate{
 	
 	public boolean after(DoyDate otherDate){
 		if(year>otherDate.year){
-			return false;
-		}else if(otherDate.year>year){
 			return true;
+		}else if(otherDate.year>year){
+			return false;
 		}else{
 			//Same year, so compare months
 			if(month>otherDate.month){
-				return false;
-			}else if(otherDate.month>month){
 				return true;
+			}else if(otherDate.month>month){
+				return false;
 			}else{
 				//same month, so compare days
 				if(day>otherDate.day){
-					return false;
-				}else if(otherDate.day>day){
 					return true;
+				}else if(otherDate.day>day){
+					return false;
 				}else{
 					//Same year, month and day
 					return false;
